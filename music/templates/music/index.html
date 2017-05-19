@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Music10{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Orbitron|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {% load staticfiles %}
+    <script src="{% static 'music/main.js'%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
+</head>
+<body>
+<div id="primary-header">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'music:index' %}">Music10</a>
+        </div>
+        <!-- Items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+            <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'music:index' %}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+</div>
+
+<div class="wrapper">
+    <div class="container-fluid"><h2>Music Tracks</h2></div>
+    <div class="list">
+        {% if tracks %}
+            <ul>
+                {% for track in tracks %}
+                <li>
+                    <div class="#">{{ track.song_title }} [ {{track.genre}} ]</div>
+                    <div class="row lead">
+                        <div id="stars" class="starrr"></div>
+                    </div>
+                </li>
+
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>You don't have any songs yet.</h3>
+        {% endif %}
+
+    <div class="track_button">
+    <button type="button" class="btn btn-primary btn-lg btn-large" >Add new track</button>
+    </div>
+    <div class="container-fluid">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#">page 1</a></li>
+            <li><a href="#">page 2</a></li>
+            <li><a href="#">page 3</a></li>
+          </ul>
+    </div>
+
+    </div>
+    <div class="container-fluid"><h2>Genres</h2></div>
+    <div class="list">
+        {% if genres %}
+            <ul>
+                {% for genre in genres %}
+                <li>
+                    <div class="#">{{ genre.genre }} </div>
+                </li>
+
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div><h3>You have not added any genres yet.</h3></div>
+        {% endif %}
+
+        <div class="track_button">
+        <button type="button" class="btn btn-primary btn-lg btn-large" >Add new genre</button>
+        </div>
+    </div>
+    <br>
+</div>
+</body>
+</html>

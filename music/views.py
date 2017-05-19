@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -39,7 +40,6 @@ def song(request):
 @api_view(['GET'])
 @cache_page(60 * 15)
 def get_all_genres(request):
-
     if request.method == 'GET':
         genres = Genre.objects.all()
         genre_serializer = GenreSerializer(genres, many=True)
@@ -69,7 +69,6 @@ def genre_detail(request, pk):
 @api_view(['GET'])
 @cache_page(60 * 15)
 def get_all_tracks(request):
-
     query_params = request.query_params.dict()  # Gets parameters.
     if request.method == 'GET':
         if 'song_title' in query_params:
@@ -108,3 +107,16 @@ def track_detail(request, pk):
             return Response(updated_track, status=status.HTTP_200_OK)
         except ValidationException as e:  # Generic exception
             return Response(e.errors, status=e.status)
+
+
+def index(request):
+    tracks = Song.objects.all()  # Get all tracks
+    track_serializer = SongSerializer(tracks, many=True)
+    track_data = track_serializer.data
+    genres = Genre.objects.all()  # get all genres.
+    genre_serializer = GenreSerializer(genres, many=True)
+    genre_data = genre_serializer.data
+    context = {'tracks': track_data,
+               'genres': genre_data,
+               }
+    return render(request, 'music/index.html', context)
