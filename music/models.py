@@ -18,7 +18,7 @@ class Genre(models.Model):
 
 class Song(models.Model):
     class Meta:
-        db_table = 'songs'
+        db_table = 'song'
 
     song_title = models.CharField(max_length=250)
     genre = models.CharField(max_length=100)
