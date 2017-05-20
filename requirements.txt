@@ -5,6 +5,7 @@ Django==1.11.1
 django-cors-headers==2.0.2
 django-rest-swagger==2.1.2
 djangorestframework==3.6.3
+gunicorn==19.7.1
 itypes==1.1.0
 Jinja2==2.9.6
 json2html==1.1.1
