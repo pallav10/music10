@@ -47,7 +47,7 @@
             <ul>
                 {% for track in tracks %}
                 <li>
-                    <div class="#">{{ track.song_title }} [ {{track.genre}} ]</div>
+                    <div class="containet-fluid">{{ track.song_title }} [ {{track.genre}} ]</div>
                     <div class="row lead">
                         <div id="stars" class="starrr"></div>
                     </div>
@@ -58,10 +58,14 @@
         {% else %}
             <h3>You don't have any songs yet.</h3>
         {% endif %}
+    </div>
 
     <div class="track_button">
-    <button type="button" class="btn btn-primary btn-lg btn-large" >Add new track</button>
+        <a href="{% url 'music:song-add' %}">
+    <button type="button" class="btn btn-primary btn-lg btn-large">Add new track</button>
+        </a>
     </div>
+
     <div class="container-fluid">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#">page 1</a></li>
@@ -70,7 +74,7 @@
           </ul>
     </div>
 
-    </div>
+
     <div class="container-fluid"><h2>Genres</h2></div>
     <div class="list">
         {% if genres %}
@@ -87,7 +91,9 @@
         {% endif %}
 
         <div class="track_button">
-        <button type="button" class="btn btn-primary btn-lg btn-large" >Add new genre</button>
+            <a href="{% url 'music:genre-add' %}">
+                <button type="button" class="btn btn-primary btn-lg btn-large">Add new genre</button>
+            </a>
         </div>
     </div>
     <br>

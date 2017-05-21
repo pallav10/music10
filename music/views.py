@@ -8,7 +8,7 @@ import validations_utils
 from exceptions_utils import ValidationException
 from models import Genre, Song
 from serializers import GenreSerializer, SongSerializer
-
+from django.views.generic.edit import CreateView, UpdateView
 
 # Create your views here.
 
@@ -120,3 +120,13 @@ def index(request):
                'genres': genre_data,
                }
     return render(request, 'music/index.html', context)
+
+
+class SongCreate(CreateView):
+    model = Song
+    fields = ['song_title', 'genre']
+
+
+class GenreCreate(CreateView):
+    model = Genre
+    fields = ['genre']
