@@ -124,7 +124,7 @@ def index(request):
 
 class SongCreate(CreateView):
     model = Song
-    fields = ['song_title', 'genre']
+    fields = ['song_title', 'genre', 'audio_file']
 
 
 class GenreCreate(CreateView):

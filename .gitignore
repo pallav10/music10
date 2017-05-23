@@ -4,3 +4,4 @@ db.sqlite3
 .idea/
 #music/migrations/*.py
 local_settings.py
+media/

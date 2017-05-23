@@ -8,8 +8,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Orbitron|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {% load staticfiles %}
     <script src="{% static 'music/main.js'%}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
@@ -47,7 +45,13 @@
             <ul>
                 {% for track in tracks %}
                 <li>
-                    <div class="containet-fluid">{{ track.song_title }} [ {{track.genre}} ]</div>
+                    <div class="containet-fluid">{{ track.song_title }} [ {{track.genre}} ]
+                        <a target="_blank" href="{{ track.audio_file }}">
+                        <button type="button" class="btn btn-success btn-xs">
+                            <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                        </button>
+                        </a>
+                    </div>
                     <div class="row lead">
                         <div id="stars" class="starrr"></div>
                     </div>
