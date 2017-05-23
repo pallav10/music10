@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import cache_page
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -122,6 +122,12 @@ def index(request):
     return render(request, 'music/index.html', context)
 
 
+def delete_song(request, song_id):
+    track = Song.objects.get(pk=song_id)
+    track.delete()
+    return render(request, 'music/index.html')
+
+
 class SongCreate(CreateView):
     model = Song
     fields = ['song_title', 'genre', 'audio_file']
@@ -130,3 +136,5 @@ class SongCreate(CreateView):
 class GenreCreate(CreateView):
     model = Genre
     fields = ['genre']
+
+
