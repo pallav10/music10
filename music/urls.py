@@ -11,5 +11,5 @@ urlpatterns = [
     url(r'^track/$', views.SongCreate.as_view(), name='song-add'),
     url(r'^tracks/$', views.get_all_tracks, name='tracks'),
     url(r'^tracks/(?P<pk>[0-9]+)/$', views.track_detail),
-    url(r'^$', views.delete_song, name='delete_song'),
+    url(r'^delete_song/(?P<song_id>[0-9]+)/$', views.delete_song, name='delete_song'),
 ]
